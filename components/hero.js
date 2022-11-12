@@ -32,7 +32,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center w-full lg:w-1/2">
+        <div className="md:flex items-center justify-center w-full lg:w-1/2 hidden">
           <div className="">
             <Image
               src={heroImg}
