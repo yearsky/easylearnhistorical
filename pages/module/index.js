@@ -25,7 +25,10 @@ export default function Module() {
               }}
               as={`/module/${item.title}`}
             >
-              <div className="lg:col-span-2 xl:col-auto w-full" key={index}>
+              <div
+                className="lg:col-span-2 xl:col-auto w-full cursor-pointer"
+                key={index}
+              >
                 <div className="flex flex-col justify-between w-full h-ful py-10 px-14 bg-gray-100 rounded-2xl dark:bg-trueGray-800">
                   <Image
                     src={item.image}

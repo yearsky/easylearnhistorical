@@ -4,13 +4,13 @@ import benefitOneImg from "../public/img/hero.jpg";
 const moduleData = [
   {
     title: "Modul 3.1 Konsep berpikir sinkronik dan diakronik dalam sejarah",
-    image: tika,
+    image: benefitOneImg,
     source:
       "https://docs.google.com/document/d/e/2PACX-1vR1qfZ12XHMmVOCKgupGPJURXyiZW3N-m69UUAbsUwwlzpjGR7LAPnUgUCbjSTYHg/pub",
     avatar: [
       {
         name: "Tika Puspita Sariningsih",
-        image: tika,
+        image: benefitOneImg,
         role: "Pendidik",
       },
     ],
@@ -23,7 +23,7 @@ const moduleData = [
     avatar: [
       {
         name: "Tika Puspita Sariningsih",
-        image: tika,
+        image: benefitOneImg,
         role: "Pendidik",
       },
     ],

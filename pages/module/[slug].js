@@ -16,6 +16,12 @@ export default function Module() {
   return (
     <>
       <Container>
+        <div
+          className="text-sm cursor-pointer font-bold tracking-wider text-indigo-600 uppercase"
+          onClick={() => router.back()}
+        >
+          {"< "}Kembali
+        </div>
         <SectionTitle
           pretitle="Module Pembelajaran"
           title={data.slug}

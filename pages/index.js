@@ -10,24 +10,22 @@ import Testimonials from "../components/testimonials";
 import Cta from "../components/cta";
 import Faq from "../components/faq";
 import PopupWidget from "../components/popupWidget";
-
-//import dynamic from "next/dynamic";
-
-// const Video = dynamic(() => import("../components/video"));
-
-// const Benefits = dynamic(() => import("../components/benefits"));
-// const Footer = dynamic(() => import("../components/footer"));
-// const Testimonials = dynamic(() => import("../components/testimonials"));
-// const Cta = dynamic(() => import("../components/cta"));
-// const Faq = dynamic(() => import("../components/faq"));
-
-// const PopupWidget = dynamic(() => import("../components/popupWidget"));
+import Pilihan from "../components/pilihan";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <SectionTitle
+        id="pilihan"
+        pretitle="Banyak pilihan cara pembelajaran"
+        title=" Cihuy! Belajar Sejarah makin asik dengan variasi pembelajaran"
+      >
+        Pilih Koleksi Pembelajaran yang menarik untuk anda pelajari
+      </SectionTitle>
+      <Pilihan />
+      <SectionTitle
+        id="benefit"
         pretitle="Keuntungan Belajar di Easy Learn Historical"
         title=" Kenapa harus belajar di sini?"
       >

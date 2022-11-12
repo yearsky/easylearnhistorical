@@ -22,8 +22,7 @@ export default function Hero() {
 
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
               <a
-                href="https://web3templates.com/templates/nextly-landing-page-template-for-startups"
-                target="_blank"
+                href="#pilihan"
                 rel="noopener"
                 className="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 rounded-md "
               >
@@ -43,96 +42,6 @@ export default function Hero() {
               loading="eager"
               placeholder="blur"
             />
-          </div>
-        </div>
-      </Container>
-      <Container>
-        <div className="flex flex-col justify-center">
-          <div className="text-xl text-center text-gray-700 dark:text-white">
-            Pilih Koleksi Pembelajaran yang menarik untuk anda pelajari
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <Link href="/buku">
-                <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-                  <span>
-                    <img
-                      src="/img/book.svg"
-                      alt="N"
-                      width="32"
-                      height="32"
-                      className="w-32 mx-auto"
-                    />
-                  </span>
-                  <span>Buku Pembelajaran</span>
-                </a>
-              </Link>
-            </div>
-            <div className="text-gray-400 dark:text-gray-400 pt-2">
-              <Link href="/module">
-                <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-                  <span>
-                    <img
-                      src="/img/emodule.svg"
-                      alt="N"
-                      width="32"
-                      height="32"
-                      className="w-32 mx-auto"
-                    />
-                  </span>
-                  <span>E-Module</span>
-                </a>
-              </Link>
-            </div>
-            <div className="text-gray-400 dark:text-gray-400 pt-2">
-              <Link href="/">
-                <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-                  <span>
-                    <img
-                      src="/img/video.svg"
-                      alt="N"
-                      width="32"
-                      height="32"
-                      className="w-32 mx-auto"
-                    />
-                  </span>
-                  <span>Video Pembelajaran</span>
-                </a>
-              </Link>
-            </div>
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <Link href="/">
-                <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-                  <span>
-                    <img
-                      src="/img/ppt.svg"
-                      alt="N"
-                      width="32"
-                      height="32"
-                      className="w-32 mx-auto"
-                    />
-                  </span>
-                  <span>Media Pembelajaran</span>
-                </a>
-              </Link>
-            </div>
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <Link href="/">
-                <a className="items-center space-x-2 text-2xl text-center font-medium text-indigo-500 dark:text-gray-100">
-                  <span>
-                    <img
-                      src="/img/article.svg"
-                      alt="N"
-                      width="32"
-                      height="32"
-                      className="w-32"
-                    />
-                  </span>
-                  <span>Article</span>
-                </a>
-              </Link>
-            </div>
           </div>
         </div>
       </Container>

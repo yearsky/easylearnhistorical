@@ -3,10 +3,12 @@ import Container from "./container";
 
 export default function SectionTitle(props) {
   return (
-    <Container
-      className={`flex w-full flex-col mt-4 ${
+    <section
+      className={`flex container p-8 mx-auto xl:px-0 w-full flex-col mt-4 ${
         props.align === "left" ? "" : "items-center justify-center text-center"
-      }`}>
+      }`}
+      id={props.id}
+    >
       {props.pretitle && (
         <div className="text-sm font-bold tracking-wider text-indigo-600 uppercase">
           {props.pretitle}
@@ -24,6 +26,6 @@ export default function SectionTitle(props) {
           {props.children}
         </p>
       )}
-    </Container>
+    </section>
   );
 }
