@@ -70,7 +70,7 @@ export default function Hero() {
               </Link>
             </div>
             <div className="text-gray-400 dark:text-gray-400 pt-2">
-              <Link href="/">
+              <Link href="/module">
                 <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                   <span>
                     <img
