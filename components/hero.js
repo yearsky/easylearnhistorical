@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Container from "./container";
-import heroImg from "../public/img/hero.jpg";
+import heroImg from "../public/img/guru.jpg";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -51,21 +52,86 @@ export default function Hero() {
             Pilih Koleksi Pembelajaran yang menarik untuk anda pelajari
           </div>
 
-          <div className="flex flex-wrap justify-center gap-5 mt-10 md:justify-around">
+          <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
             <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <AmazonLogo />
+              <Link href="/">
+                <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
+                  <span>
+                    <img
+                      src="/img/book.svg"
+                      alt="N"
+                      width="32"
+                      height="32"
+                      className="w-32 mx-auto"
+                    />
+                  </span>
+                  <span>Buku Pembelajaran</span>
+                </a>
+              </Link>
             </div>
-            <div className="text-gray-400 dark:text-gray-400">
-              <VerizonLogo />
+            <div className="text-gray-400 dark:text-gray-400 pt-2">
+              <Link href="/">
+                <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
+                  <span>
+                    <img
+                      src="/img/emodule.svg"
+                      alt="N"
+                      width="32"
+                      height="32"
+                      className="w-32 mx-auto"
+                    />
+                  </span>
+                  <span>E-Module</span>
+                </a>
+              </Link>
             </div>
-            <div className="text-gray-400 dark:text-gray-400">
-              <MicrosoftLogo />
-            </div>
-            <div className="pt-1 text-gray-400 dark:text-gray-400">
-              <NetflixLogo />
+            <div className="text-gray-400 dark:text-gray-400 pt-2">
+              <Link href="/">
+                <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
+                  <span>
+                    <img
+                      src="/img/video.svg"
+                      alt="N"
+                      width="32"
+                      height="32"
+                      className="w-32 mx-auto"
+                    />
+                  </span>
+                  <span>Video Pembelajaran</span>
+                </a>
+              </Link>
             </div>
             <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <SonyLogo />
+              <Link href="/">
+                <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
+                  <span>
+                    <img
+                      src="/img/ppt.svg"
+                      alt="N"
+                      width="32"
+                      height="32"
+                      className="w-32 mx-auto"
+                    />
+                  </span>
+                  <span>Media Pembelajaran</span>
+                </a>
+              </Link>
+            </div>
+            <div className="pt-2 text-gray-400 dark:text-gray-400">
+              <Link href="/">
+                <a className="items-center space-x-2 text-2xl text-center font-medium text-indigo-500 dark:text-gray-100">
+                  <span>
+                    <img
+                      src="/img/article.svg"
+                      alt="N"
+                      width="32"
+                      height="32"
+                      className="w-32"
+                    />
+                  </span>
+                  <span>Article</span>
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -73,7 +139,99 @@ export default function Hero() {
     </>
   );
 }
-
+function BookLogo() {
+  return (
+    <svg
+      version="1.1"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      viewBox="0 0 352.666 352.666"
+    >
+      <g>
+        <g>
+          <path
+            fill="#005CB9"
+            d="M253.149,308.053c0,13.75-11.25,25-25,25H25c-13.75,0-25-11.25-25-25V37.113
+          c0-13.75,11.25-25,25-25h203.149c13.75,0,25,11.25,25,25V308.053z"
+          />
+          <rect
+            x="57.476"
+            y="73.685"
+            fill="#FFFFFF"
+            width="152.199"
+            height="30.1"
+          />
+          <rect
+            x="57.476"
+            y="197.268"
+            fill="#1E252B;"
+            width="152.199"
+            height="15.05"
+          />
+          <rect
+            x="75.452"
+            y="226.601"
+            fill="#1E252B;"
+            width="116.246"
+            height="15.05"
+          />
+        </g>
+        <g>
+          <path
+            fill="#C3C6C8;"
+            d="M336.555,254.287H130.974c-21.281,0-38.533,17.253-38.533,38.533
+          c0,21.281,17.252,38.533,38.533,38.533h205.581V254.287z"
+          />
+          <path
+            fill="#FEE050;"
+            d="M343.468,340.553H130.974c-26.32,0-47.732-21.412-47.732-47.732
+          c0-26.319,21.412-47.732,47.732-47.732h212.494c5.08,0,9.198,4.118,9.198,9.199c0,5.081-4.118,9.199-9.198,9.199H130.974
+          c-16.175,0-29.335,13.159-29.335,29.334c0,16.175,13.16,29.335,29.335,29.335h212.494c5.08,0,9.198,4.118,9.198,9.198
+          C352.666,336.435,348.548,340.553,343.468,340.553z"
+          />
+          <rect
+            x="123.716"
+            y="276.359"
+            fill="#7D868C;"
+            width="212.839"
+            height="4.293"
+          />
+          <rect
+            x="123.716"
+            y="290.674"
+            fill="#7D868C;"
+            width="212.839"
+            height="4.293"
+          />
+          <rect
+            x="123.716"
+            y="304.988"
+            fill="#7D868C;"
+            width="212.839"
+            height="4.293"
+          />
+        </g>
+      </g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+    </svg>
+  );
+}
 function AmazonLogo() {
   return (
     <svg
