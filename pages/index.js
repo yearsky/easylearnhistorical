@@ -28,28 +28,29 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Nextly - Free Nextjs & TailwindCSS Landing Page Template</title>
+        <title>Easy Learn Historical</title>
         <meta
           name="description"
-          content="Nextly is a free landing page template built with next.js & Tailwind CSS"
+          content="Easy Learn Historical is a platform that provides you with the best learning experience"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/img/logo.svg" />
       </Head>
 
       <Navbar />
       <Hero />
       <SectionTitle
-        pretitle="Nextly Benefits"
-        title=" Why should you use this landing page">
-        Nextly is a free landing page & marketing website template for startups
-        and indie projects. Its built with Next.js & TailwindCSS. And its
-        completely open-source.
+        pretitle="Keuntungan Belajar di Easy Learn Historical"
+        title=" Kenapa harus belajar di sini?"
+      >
+        Easy Learn Historical adalah platform pembelajran sejarah yang
+        menyediakan materi pembelajaran sejarah yang lengkap dan mudah dipahami.
       </SectionTitle>
       <Benefits data={benefitOne} />
-      <Benefits imgPos="right" data={benefitTwo} />
+      {/* <Benefits imgPos="right" data={benefitTwo} /> */}
       <SectionTitle
         pretitle="Watch a video"
-        title="Learn how to fullfil your needs">
+        title="Learn how to fullfil your needs"
+      >
         This section is to highlight a promo or demo video of your product.
         Analysts says a landing page with video has 3% more conversion rate. So,
         don't forget to add one. Just like this.
@@ -57,7 +58,8 @@ export default function Home() {
       <Video />
       <SectionTitle
         pretitle="Testimonials"
-        title="Here's what our customers said">
+        title="Here's what our customers said"
+      >
         Testimonails is a great way to increase the brand trust and awareness.
         Use this section to highlight your popular customers.
       </SectionTitle>

@@ -11,22 +11,22 @@ import benefitOneImg from "../public/img/benefit-one.png";
 import benefitTwoImg from "../public/img/benefit-two.png";
 
 const benefitOne = {
-  title: "Highlight your benefits",
-  desc: "You can use this space to highlight your first benefit or a feature of your product. It can also contain an image or Illustration like in the example along with some bullet points.",
+  title: "",
+  desc: "",
   image: benefitOneImg,
   bullets: [
     {
-      title: "Understand your customers",
+      title: "Mudah Dipahami",
       desc: "Then explain the first point breifly in one or two lines.",
       icon: <EmojiHappyIcon />,
     },
     {
-      title: "Improve acquisition",
+      title: "Materi terbaru",
       desc: "Here you can add the next benefit point.",
       icon: <ChartSquareBarIcon />,
     },
     {
-      title: "Drive customer retention",
+      title: "Akses kapanpun dan dimanapun",
       desc: "This will be your last bullet point in this section.",
       icon: <CursorClickIcon />,
     },
