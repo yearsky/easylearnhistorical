@@ -3,6 +3,9 @@ module.exports = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    domains: ['firebasestorage.googleapis.com'],
+  },
   target: "serverless",
   webpack: (config, { isServer }) => {
     if (!isServer) {
