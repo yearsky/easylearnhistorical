@@ -27,6 +27,7 @@ export default function Module() {
           title={data.slug}
         ></SectionTitle>
         <div className="w-full flex justify-center">
+          
           <iframe
             style={{
               width: "1000px",

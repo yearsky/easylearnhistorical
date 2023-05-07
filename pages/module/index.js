@@ -6,16 +6,16 @@ import SectionTitle from "../../components/sectionTitle";
 import tika from "../../public/img/tika.jpeg";
 import App from "../../layouts/App";
 import Image from "next/image";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 // import { moduleData } from "../../components/moduleData";
 import Link from "next/link";
-import io from 'socket.io-client';
+import io from "socket.io-client";
+import Loading from "../loading";
 
 // const dbInstance = collection(database, "modules");
 export default function Module() {
-  const router = useRouter();
   const [moduleData, setModuleData] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     socketInitializer();
   }, []);
@@ -26,10 +26,14 @@ export default function Module() {
 
     let socket = io();
 
-    socket.on("moduleData", (data) => {
-      setModuleData((prevModuleData) => [...data]);
-    });
+    socket.on('moduleData', (data) => {
+      console.log(data);
+      setModuleData([...data]);
 
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000); // Delay for 2 seconds before setting isLoading to false
+    });
   };
 
   return (
@@ -40,40 +44,45 @@ export default function Module() {
           title="Banyak beragam pilihan module pembelajaraan untuk siswa"
         ></SectionTitle>
         <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-3">
-          {moduleData && moduleData.map((item, index) => (
-            <Link
-              href={{
-                pathname: "/module/[slug]",
-                query: {
-                  slug: item.title,
-                  src: item.source,
-                },
-              }}
-              as={`/module/${item.title}`}
-              key={index}
-            >
-              <div className="lg:col-span-2 xl:col-auto w-full cursor-pointer">
-                <div className="flex flex-col justify-between w-full h-ful py-10 px-14 bg-gray-100 rounded-2xl dark:bg-trueGray-800">
-                  
-                    <Image
-                      src={item.image[0].downloadURL}
-                      width="40"
-                      layout="responsive"
-                      height="40"
-                      unoptimized
-                      alt="Avatar"
-                    />
-                  <p className="text-2xl leading-normal">
-                    {item.title}
-                  </p>
-                  <Avatar
-                    image={item.authorImage[0].downloadURL} // Ganti dengan properti yang sesuai dari data API Anda
-                    name={item.author} // Ganti dengan properti yang sesuai dari data API Anda
-                  />
+          {isLoading ? (
+            <Loading length={moduleData.length} />
+          ) : moduleData.length === 0 ? (
+            <p>No data available</p>
+          ) : (
+            moduleData.map((item, index) => (
+              <Link
+                href={{
+                  pathname: "/module/[slug]",
+                  query: {
+                    slug: item.title,
+                    src: item.file[0].downloadURL,
+                  },
+                }}
+                as={`/module/${item.title}`}
+                key={index}
+              >
+                <div>
+                  <div className="lg:col-span-2 xl:col-auto w-full cursor-pointer">
+                    <div className="flex flex-col justify-between w-full h-ful py-10 px-14 bg-gray-100 rounded-2xl dark:bg-trueGray-800">
+                      <Image
+                        src={item.image[0].downloadURL}
+                        width="40"
+                        layout="responsive"
+                        height="40"
+                        unoptimized
+                        alt="Avatar"
+                      />
+                      <p className="text-2xl leading-normal">{item.title}</p>
+                      <Avatar
+                        image={item.authorImage[0].downloadURL}
+                        name={item.author}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))
+          )}
         </div>
       </Container>
     </>
