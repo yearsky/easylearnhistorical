@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Head from "next/head";
 import Navbar from "../../components/navbar";
 import Container from "../../components/container";
@@ -9,10 +9,20 @@ import Image from "next/image";
 import { moduleData } from "../../components/moduleData";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Document, Page } from "react-pdf";
 
 export default function Module() {
   const router = useRouter();
   const data = router.query;
+  console.log(data);
+  const [pages, setPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    console.log("object:", numPages, pages);
+    setPages(numPages);
+    setPageNumber(1);
+  }
   return (
     <>
       <Container>
@@ -27,15 +37,15 @@ export default function Module() {
           title={data.slug}
         ></SectionTitle>
         <div className="w-full flex justify-center">
-          
-          <iframe
-            style={{
-              width: "1000px",
-              height: "500px",
-              border: "1px solid black",
-            }}
-            src={`${data.src}?embedded=true`}
-          ></iframe>
+          {typeof window !== "undefined" && (
+            <Document
+              file={data.src}
+              onLoadSuccess={onDocumentLoadSuccess}
+              onLoadError={(error) => console.log("Inside Error", error)}
+            >
+              <Page pageNumber={pageNumber} />
+            </Document>
+          )}
         </div>
       </Container>
     </>

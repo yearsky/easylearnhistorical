@@ -1,6 +1,12 @@
 import { Server } from "socket.io";
-import { getFirestore, collection, getDocs,onSnapshot } from "firebase/firestore";
-import { app } from '../../utils/firebaseConfig';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+import { app } from "../../utils/firebaseConfig";
 
 export default function SocketHandler(req, res) {
   // It means that the socket server was already initialized
@@ -13,22 +19,46 @@ export default function SocketHandler(req, res) {
   const io = new Server(res.socket.server);
   res.socket.server.io = io;
 
-  const onConnection = (socket) => {
+  const onConnection = async (socket) => {
     const firestore = getFirestore(app);
     const modulesRef = collection(firestore, "modules");
+    const storage = getStorage();
 
-    // console.log(modulesRef);
+    const unsubscribe = onSnapshot(
+      modulesRef,
+      async (snapshot) => {
+        if (!snapshot.empty) {
+          const modules = snapshot.docs.map((doc) => {
+            const data = doc.data();
+            const id = doc.id;
+            return { id, ...data };
+          });
 
-    const unsubscribe = onSnapshot(modulesRef, (snapshot) => {
-      if (!snapshot.empty) {
-        const modules = snapshot.docs.map((doc) => doc.data());
-        // console.log(modules);
-        socket.emit("moduleData", modules);
-        // socket.on("moduleData",modules);
+          // Fetch storage files based on docId
+          // const storageData = [];
+          // for (const module of modules) {
+          //   const docId = module.id;
+          //   const fileName = module.file[0].ref;
+          //   const moduleStorageRef = ref(storage, fileName);
+
+          //   try {
+          //     const downloadURL = await getDownloadURL(moduleStorageRef);
+          //     storageData.push({ docId, downloadURL });
+          //   } catch (error) {
+          //     console.error(
+          //       `Error getting download URL for docId '${docId}':`,
+          //       error
+          //     );
+          //   }
+          // }
+
+          socket.emit("moduleData", modules);
+        }
+      },
+      (error) => {
+        console.error("Firestore snapshot error:", error);
       }
-    }, (error) => {
-      console.error("Firestore snapshot error:", error);
-    });
+    );
 
     // Unsubscribe from the snapshot listener when the socket connection is closed
     socket.on("disconnect", () => {

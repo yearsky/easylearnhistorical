@@ -26,10 +26,9 @@ export default function Module() {
 
     let socket = io();
 
-    socket.on('moduleData', (data) => {
-      console.log(data);
+    socket.on("moduleData", (data) => {
       setModuleData([...data]);
-
+      console.log(data);
       setTimeout(() => {
         setIsLoading(false);
       }, 2000); // Delay for 2 seconds before setting isLoading to false
@@ -50,18 +49,12 @@ export default function Module() {
             <p>No data available</p>
           ) : (
             moduleData.map((item, index) => (
-              <Link
-                href={{
-                  pathname: "/module/[slug]",
-                  query: {
-                    slug: item.title,
-                    src: item.file[0].downloadURL,
-                  },
-                }}
-                as={`/module/${item.title}`}
+              <a
+                href="#"
+                onClick={() => window.open(item.file[0].downloadURL, "_blank")}
                 key={index}
               >
-                <div>
+                <div key={index}>
                   <div className="lg:col-span-2 xl:col-auto w-full cursor-pointer">
                     <div className="flex flex-col justify-between w-full h-ful py-10 px-14 bg-gray-100 rounded-2xl dark:bg-trueGray-800">
                       <Image
@@ -80,7 +73,7 @@ export default function Module() {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))
           )}
         </div>
