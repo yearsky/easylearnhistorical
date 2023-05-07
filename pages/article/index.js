@@ -17,7 +17,7 @@ export default function Module() {
   const [moduleData, setModuleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const socketInitializer = async () => {
-    const collectionName = "modules"; // Replace with the desired collection name
+    const collectionName = "article"; // Replace with the desired collection name
     const response = await fetch(
       `/api/socket?collectionName=${encodeURIComponent(collectionName)}`
     );
@@ -69,8 +69,8 @@ export default function Module() {
     <>
       <Container>
         <SectionTitle
-          pretitle="Module Pembelajaran 1"
-          title="Banyak beragam pilihan module pembelajaraan untuk siswa"
+          pretitle="Article"
+          title="Banyak beragam pilihan article pembelajaraan untuk siswa"
         ></SectionTitle>
         <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-3">
           {isLoading ? (
@@ -79,31 +79,38 @@ export default function Module() {
             <p>No data available</p>
           ) : (
             moduleData.map((item, index) => (
-              <a
-                href="#"
-                onClick={() => window.open(item.file[0].downloadURL, "_blank")}
+              <Link
+                href={{
+                  pathname: "/article/[slug]",
+                  query: {
+                    slug: item.judul,
+                  },
+                }}
+                as={`/article/${item.judul}`}
                 key={index}
               >
-                <div key={index}>
-                  <div className="lg:col-span-2 xl:col-auto w-full cursor-pointer">
-                    <div className="flex flex-col justify-between w-full h-ful py-10 px-14 bg-gray-100 rounded-2xl dark:bg-trueGray-800">
-                      <Image
-                        src={item.image[0].downloadURL}
-                        width="40"
-                        layout="responsive"
-                        height="40"
-                        unoptimized
-                        alt="Avatar"
-                      />
-                      <p className="text-2xl leading-normal">{item.title}</p>
-                      <Avatar
-                        image={item.authorImage[0].downloadURL}
-                        name={item.author}
-                      />
+                <div className="lg:col-span-2 xl:col-auto w-full bg-gray-200 rounded-2xl">
+                  <div className="flex flex-col justify-between w-full h-ful py-10 px-14">
+                    <Image
+                      src={item.image[0].downloadURL}
+                      width={20}
+                      height={10}
+                      unoptimized
+                      style={{ objectFit: "contain" }}
+                      className="rounded-md"
+                      alt="Avatar"
+                      layout="responsive"
+                    />
+                    <div className="text-center my-4 text-xl rounded">
+                      {item.judul}
                     </div>
+                    <Avatar
+                      image={item.image[0].downloadURL}
+                      name={item.author}
+                    />
                   </div>
                 </div>
-              </a>
+              </Link>
             ))
           )}
         </div>
@@ -126,7 +133,7 @@ function Avatar(props) {
       </div>
       <div>
         <div className="text-lg font-medium">{props.name}</div>
-        <div className="text-gray-600 dark:text-gray-400">Pendidik</div>
+        <div className="text-gray-600 dark:text-gray-400">Penulis</div>
       </div>
     </div>
   );
