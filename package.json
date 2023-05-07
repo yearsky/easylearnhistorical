@@ -17,6 +17,10 @@
     "tailwindcss",
     "free"
   ],
+  "engines": {
+    "node": "16.14.0",
+    "npm": "8.14.0"
+  },
   "author": "Surjith S M",
   "license": "ISC",
   "dependencies": {
