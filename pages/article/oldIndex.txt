@@ -3,6 +3,7 @@ import Head from "next/head";
 import Navbar from "../../components/navbar";
 import Container from "../../components/container";
 import SectionTitle from "../../components/sectionTitle";
+import tika from "../../public/img/tika.jpeg";
 import App from "../../layouts/App";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,29 +11,58 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import io from "socket.io-client";
 import Loading from "../loading";
-import {
-  collection,
-  query as fireQuery,
-  doc,
-  getDocs,
-  where,
-} from "firebase/firestore";
-import { app, database } from "../../utils/firebaseConfig";
+
 // const dbInstance = collection(database, "modules");
-export default function Article() {
+export default function Module() {
+  const [moduleData, setModuleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("/api/article");
-      const data = await res.json();
-      setArticles(data);
-      setIsLoading(false);
+  const socketInitializer = async () => {
+    const collectionName = "article"; // Replace with the desired collection name
+    const response = await fetch(
+      `/api/socket?collectionName=${encodeURIComponent(collectionName)}`
+    );
+    if (!response.ok) {
+      console.error("Failed to establish socket connection");
+      return;
     }
 
-    fetchData();
+    let socket = io();
+
+    socket.on("connect", () => {
+      socket.emit("subscribe", collectionName);
+    });
+
+    socket.on("moduleData", ({ collectionName, modules }) => {
+      if (collectionName === collectionName) {
+        setModuleData([...modules]);
+        console.log(modules);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000); // Delay for 2 seconds before setting isLoading to false
+      }
+    });
+
+    return () => {
+      socket.emit("unsubscribe");
+      socket.off("moduleData");
+      socket.close();
+    };
+  };
+
+  useEffect(() => {
+    let socket = null; // Define socket variable
+
+    socketInitializer().catch((error) => {
+      console.error("Failed to establish socket connection:", error);
+    });
+
+    return () => {
+      if (socket) {
+        socket.emit("unsubscribe");
+        socket.off("moduleData");
+        socket.close();
+      }
+    };
   }, []);
 
   return (
@@ -40,16 +70,25 @@ export default function Article() {
       <Container>
         <SectionTitle
           pretitle="Article"
-          title="Banyak beragam pilihan article pembelajaran untuk siswa"
+          title="Banyak beragam pilihan article pembelajaraan untuk siswa"
         ></SectionTitle>
         <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-3">
           {isLoading ? (
-            <Loading length={articles.length} />
-          ) : articles.length === 0 ? (
+            <Loading length={moduleData.length} />
+          ) : moduleData.length === 0 ? (
             <p>No data available</p>
           ) : (
-            articles.map((item, index) => (
-              <Link href={`/article/${item.judul}`} key={index}>
+            moduleData.map((item, index) => (
+              <Link
+                href={{
+                  pathname: "/article/[slug]",
+                  query: {
+                    slug: item.judul,
+                  },
+                }}
+                as={`/article/${item.judul}`}
+                key={index}
+              >
                 <div className="lg:col-span-2 xl:col-auto w-full bg-gray-200 rounded-2xl">
                   <div className="flex flex-col justify-between w-full h-ful py-10 px-14">
                     <Image
@@ -79,7 +118,6 @@ export default function Article() {
     </>
   );
 }
-
 function Avatar(props) {
   return (
     <div className="flex items-center mt-8 space-x-3">
@@ -101,15 +139,4 @@ function Avatar(props) {
   );
 }
 
-// export async function getServerSideProps() {
-//   const res = await fetch("api/article");
-//   const data = await res.json();
-
-//   return {
-//     props: {
-//       articles: data,
-//     },
-//   };
-// }
-
-Article.getLayout = (page) => <App children={page} />;
+Module.getLayout = (page) => <App children={page} />;

@@ -16,16 +16,55 @@ import Loading from "../loading";
 export default function Module() {
   const [moduleData, setModuleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("/api/modules");
-      const data = await res.json();
-      setModuleData(data);
-      setIsLoading(false);
+  const socketInitializer = async () => {
+    const collectionName = "modules"; // Replace with the desired collection name
+    const response = await fetch(
+      `/api/socket?collectionName=${encodeURIComponent(collectionName)}`
+    );
+    if (!response.ok) {
+      console.error("Failed to establish socket connection");
+      return;
     }
 
-    fetchData();
+    let socket = io();
+
+    socket.on("connect", () => {
+      socket.emit("subscribe", collectionName);
+    });
+
+    socket.on("moduleData", ({ collectionName, modules }) => {
+      if (collectionName === collectionName) {
+        setModuleData([...modules]);
+        console.log(modules);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000); // Delay for 2 seconds before setting isLoading to false
+      }
+    });
+
+    return () => {
+      socket.emit("unsubscribe");
+      socket.off("moduleData");
+      socket.close();
+    };
+  };
+
+  useEffect(() => {
+    let socket = null; // Define socket variable
+
+    socketInitializer().catch((error) => {
+      console.error("Failed to establish socket connection:", error);
+    });
+
+    return () => {
+      if (socket) {
+        socket.emit("unsubscribe");
+        socket.off("moduleData");
+        socket.close();
+      }
+    };
   }, []);
+
   return (
     <>
       <Container>
