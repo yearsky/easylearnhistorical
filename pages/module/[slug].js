@@ -9,7 +9,6 @@ import Image from "next/image";
 import { moduleData } from "../../components/moduleData";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Document, Page } from "react-pdf";
 
 export default function Module() {
   const router = useRouter();
@@ -36,17 +35,7 @@ export default function Module() {
           pretitle="Module Pembelajaran"
           title={data.slug}
         ></SectionTitle>
-        <div className="w-full flex justify-center">
-          {typeof window !== "undefined" && (
-            <Document
-              file={data.src}
-              onLoadSuccess={onDocumentLoadSuccess}
-              onLoadError={(error) => console.log("Inside Error", error)}
-            >
-              <Page pageNumber={pageNumber} />
-            </Document>
-          )}
-        </div>
+        <div className="w-full flex justify-center"></div>
       </Container>
     </>
   );
