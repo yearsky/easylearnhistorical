@@ -41,7 +41,7 @@ export default function Pilihan() {
             </Link>
           </div>
           <div className="text-gray-400 dark:text-gray-400 pt-2">
-            <Link href="/">
+            <Link href="/video">
               <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                 <span>
                   <img
@@ -57,7 +57,7 @@ export default function Pilihan() {
             </Link>
           </div>
           <div className="pt-2 text-gray-400 dark:text-gray-400">
-            <Link href="/">
+            <Link href="/media">
               <a className="items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                 <span>
                   <img

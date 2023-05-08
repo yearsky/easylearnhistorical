@@ -40,7 +40,7 @@ export default function Home() {
       >
         Dengan menggunakan video pembelajaran, belajar jadi makin asik!🥳
       </SectionTitle>
-      <Video />
+      {/* <Video /> */}
       {/* <SectionTitle
         pretitle="Testimonials"
         title="Here's what our customers said"

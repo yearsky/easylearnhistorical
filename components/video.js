@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Container from "./container";
 
-export default function Video() {
+export default function Video({ source }) {
   const [playVideo, setPlayVideo] = useState(false);
   return (
     <Container>
@@ -29,7 +29,7 @@ export default function Video() {
           )}
           {playVideo && (
             <iframe
-              src="https://drive.google.com/file/d/16mtlNfSBeP57HJEXS78MUlzSiqFecA8J/preview"
+              src={source}
               title="Video Pembelajaran"
               frameborder="0"
               allowfullscreen
