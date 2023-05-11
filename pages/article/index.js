@@ -18,23 +18,10 @@ import {
   where,
 } from "firebase/firestore";
 import { app, database } from "../../utils/firebaseConfig";
+import apiResponse from "../../utils/apiResponse";
 // const dbInstance = collection(database, "modules");
 export default function Article() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("/api/article");
-      const data = await res.json();
-      setArticles(data);
-    }
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    fetchData();
-  }, []);
+  const { isLoading, data } = apiResponse("/api/article", 3500);
 
   return (
     <>
@@ -45,11 +32,11 @@ export default function Article() {
         ></SectionTitle>
         <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-3">
           {isLoading ? (
-            <Loading length={articles.length} />
-          ) : articles.length === 0 ? (
+            <Loading length={data.length} />
+          ) : data.length === 0 ? (
             <p>No data available</p>
           ) : (
-            articles.map((item, index) => (
+            data.map((item, index) => (
               <Link href={`/article/${item.judul}`} key={index}>
                 <div className="lg:col-span-2 xl:col-auto w-full bg-gray-200 rounded-2xl">
                   <div className="flex flex-col justify-between w-full h-ful py-10 px-14">

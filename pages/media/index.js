@@ -11,23 +11,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import io from "socket.io-client";
 import Loading from "../loading";
+import apiResponse from "../../utils/apiResponse";
 
 // const dbInstance = collection(database, "modules");
 export default function MediaPembelajaran() {
-  const [moduleData, setModuleData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("/api/media");
-      const data = await res.json();
-      setModuleData(data);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    }
-
-    fetchData();
-  }, []);
+  const { isLoading, data } = apiResponse("/api/media", 3500);
   return (
     <>
       <Container>
@@ -37,11 +25,11 @@ export default function MediaPembelajaran() {
         ></SectionTitle>
         <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-3">
           {isLoading ? (
-            <Loading length={moduleData.length} />
-          ) : moduleData.length === 0 ? (
+            <Loading length={data.length} />
+          ) : data.length === 0 ? (
             <p>No data available</p>
           ) : (
-            moduleData.map((item, index) => (
+            data.map((item, index) => (
               <a
                 href="#"
                 onClick={() => window.open(item.file[0].downloadURL, "_blank")}

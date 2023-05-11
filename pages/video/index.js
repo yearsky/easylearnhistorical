@@ -18,25 +18,10 @@ import {
   where,
 } from "firebase/firestore";
 import { app, database } from "../../utils/firebaseConfig";
+import apiResponse from "../../utils/apiResponse";
 // const dbInstance = collection(database, "modules");
 export default function Video() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [videos, setVideos] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("/api/video");
-      const data = await res.json();
-      setVideos(data);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2500);
-    }
-
-    fetchData();
-  }, []);
-
+  const { isLoading, data } = apiResponse("/api/video", 2500); // Example usage
   return (
     <>
       <Container>
@@ -46,11 +31,11 @@ export default function Video() {
         ></SectionTitle>
         <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-3">
           {isLoading ? (
-            <Loading length={videos.length} />
-          ) : videos.length === 0 ? (
+            <Loading length={data.length} />
+          ) : data.length === 0 ? (
             <p>No data available</p>
           ) : (
-            videos.map((item, index) => (
+            data.map((item, index) => (
               <Link href={`/video/${item.judul}`} key={index}>
                 <div className="lg:col-span-2 xl:col-auto w-full bg-gray-200 rounded-2xl">
                   <div className="flex flex-col justify-between w-full h-ful py-10 px-14">
