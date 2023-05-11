@@ -31,7 +31,7 @@ export default function Video() {
       setVideos(data);
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      }, 2500);
     }
 
     fetchData();
