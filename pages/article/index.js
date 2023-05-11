@@ -65,16 +65,17 @@ export default function Article() {
               >
                 <div className="lg:col-span-2 xl:col-auto w-full bg-gray-200 rounded-2xl">
                   <div className="flex flex-col justify-between w-full h-ful py-10 px-14">
-                    <Image
-                      src={item.image[0].downloadURL}
-                      width={20}
-                      height={10}
-                      unoptimized
-                      style={{ objectFit: "contain" }}
-                      className="rounded-md"
-                      alt="Avatar"
-                      layout="responsive"
-                    />
+                    <div className="w-full">
+                      <Image
+                        src={item.image[0].downloadURL}
+                        width={20}
+                        height={10}
+                        unoptimized
+                        className="rounded-md"
+                        alt="Avatar"
+                        layout="responsive"
+                      />
+                    </div>
                     <div className="text-center my-4 text-xl rounded">
                       {item.judul}
                     </div>

@@ -38,14 +38,16 @@ export default function MediaPembelajaran() {
                 <div key={index}>
                   <div className="lg:col-span-2 xl:col-auto w-full cursor-pointer">
                     <div className="flex flex-col justify-between w-full h-ful py-10 px-14 bg-gray-100 rounded-2xl dark:bg-trueGray-800">
-                      <Image
-                        src={item.cover[0].downloadURL}
-                        width="40"
-                        layout="responsive"
-                        height="40"
-                        unoptimized
-                        alt="Avatar"
-                      />
+                      <div className="w-full">
+                        <Image
+                          src={item.cover[0].downloadURL}
+                          width="40"
+                          layout="responsive"
+                          height="40"
+                          unoptimized
+                          alt="Avatar"
+                        />
+                      </div>
                       <p className="text-2xl leading-normal">{item.title}</p>
                       <Avatar
                         image={item.authorImage[0].downloadURL}
