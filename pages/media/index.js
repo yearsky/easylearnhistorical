@@ -21,7 +21,9 @@ export default function MediaPembelajaran() {
       const res = await fetch("/api/media");
       const data = await res.json();
       setModuleData(data);
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
 
     fetchData();

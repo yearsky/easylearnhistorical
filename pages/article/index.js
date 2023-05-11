@@ -29,9 +29,10 @@ export default function Article() {
       const res = await fetch("/api/article");
       const data = await res.json();
       setArticles(data);
-      setIsLoading(false);
     }
-
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
     fetchData();
   }, []);
 

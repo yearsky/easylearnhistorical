@@ -29,7 +29,9 @@ export default function Video() {
       const res = await fetch("/api/video");
       const data = await res.json();
       setVideos(data);
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
 
     fetchData();

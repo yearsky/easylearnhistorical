@@ -20,7 +20,9 @@ export default function Buku() {
       const res = await fetch("/api/buku");
       const data = await res.json();
       setModuleData(data);
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
 
     fetchData();

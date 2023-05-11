@@ -21,7 +21,9 @@ export default function Module() {
       const res = await fetch("/api/modules");
       const data = await res.json();
       setModuleData(data);
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
 
     fetchData();
