@@ -23,6 +23,17 @@ import apiResponse from "../../utils/apiResponse";
 export default function Article() {
   const { isLoading, data } = apiResponse("/api/article", 3500);
 
+  const slugify = (text) => {
+    return text
+      .toLowerCase()
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  };
+
+  // const encodedJudul = encodeURIComponent(item.judul);
+  // const slug = slugify(encodedJudul);
+  // const url = `/article/${slug}`;
+
   return (
     <>
       <Container>
@@ -37,7 +48,21 @@ export default function Article() {
             <p>No data available</p>
           ) : (
             data.map((item, index) => (
-              <Link href={`/article/${item.judul}`} key={index}>
+              // <Link
+              //   href={`/article/${encodeURIComponent(item.judul)}`}
+              //   key={index}
+              // >
+              <Link
+                href={{
+                  pathname: "/article/[slug]",
+                  query: {
+                    slug: encodeURIComponent(slugify(item.judul)),
+                    id: item.id,
+                  },
+                }}
+                as={`/article/${encodeURIComponent(slugify(item.judul))}`}
+                key={index}
+              >
                 <div className="lg:col-span-2 xl:col-auto w-full bg-gray-200 rounded-2xl">
                   <div className="flex flex-col justify-between w-full h-ful py-10 px-14">
                     <Image

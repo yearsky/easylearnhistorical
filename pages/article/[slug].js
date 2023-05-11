@@ -59,11 +59,14 @@ export default function Module({ article }) {
   );
 }
 export async function getServerSideProps({ query }) {
-  const { slug } = query;
+  const { id } = query;
 
   try {
-    const articleRef = collection(database, "article");
-    const q = fireQuery(articleRef, where("judul", "==", slug));
+    const articleRef = doc(database, "article", id);
+    const q = fireQuery(
+      collection(database, "article"),
+      where("__name__", "==", articleRef)
+    );
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {

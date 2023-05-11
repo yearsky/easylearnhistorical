@@ -3,7 +3,7 @@ import ThemeChanger from "./DarkSwitch";
 import { Disclosure } from "@headlessui/react";
 
 export default function Navbar() {
-  const navigation = ["Beranda", "Informasi"];
+  const navigation = ["Beranda", ""];
 
   return (
     <div className="w-full">
@@ -62,11 +62,11 @@ export default function Navbar() {
                         </a>
                       </Link>
                     ))}
-                    <Link href="/">
+                    {/* <Link href="/">
                       <a className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5">
                         Get Started
                       </a>
-                    </Link>
+                    </Link> */}
                   </>
                 </Disclosure.Panel>
               </div>
@@ -90,11 +90,11 @@ export default function Navbar() {
         </div>
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
-          <Link href="/">
+          {/* <Link href="/">
             <a className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5">
               Get Started
             </a>
-          </Link>
+          </Link> */}
 
           <ThemeChanger />
         </div>
